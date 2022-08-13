@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiyseo <jiyseo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/13 19:01:16 by jiyseo            #+#    #+#             */
+/*   Updated: 2022/08/13 21:13:49 by jiyseo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	push_top(t_stack *stack, t_node *node)
 {
-	if(!node)
+	if (!node)
 		return ;
 	node->prev = NULL;
 	node->next = stack->top;
@@ -11,13 +23,14 @@ void	push_top(t_stack *stack, t_node *node)
 		stack->bottom = node;
 	if (node->next)
 		node->next->prev = node;
-	stack->count++;
+	stack->size++;
 }
 
 void	push_bottom(t_stack *stack, t_node *node)
 {
-	if(!node)
+	if (!node)
 		return ;
+	update_stack_index(stack, node);
 	node->prev = stack->bottom;
 	node->next = NULL;
 	stack->bottom = node;
@@ -25,7 +38,7 @@ void	push_bottom(t_stack *stack, t_node *node)
 		stack->top = node;
 	if (node->prev)
 		node->prev->next = node;
-	stack->count++;
+	stack->size++;
 }
 
 t_node	*pop_top(t_stack *stack)
@@ -40,7 +53,7 @@ t_node	*pop_top(t_stack *stack)
 			stack->top->prev = NULL;
 		if (stack->bottom == node)
 			stack->bottom = node->next;
-		stack->count--;
+		stack->size--;
 	}
 	return (node);
 }
@@ -57,22 +70,7 @@ t_node	*pop_bottom(t_stack *stack)
 			stack->bottom->next = NULL;
 		if (stack->top == node)
 			stack->top = node->prev;
-		stack->count--;
+		stack->size--;
 	}
 	return (node);
-}
-
-#define HEX2(addr)	((int)((unsigned long long)(addr) & 0xFFFF))
-
-void	print_stack(t_stack *stack)
-{
-	t_node	*node;
-
-	printf("top:%04X bottom:%04X count: %d\n", HEX2(stack->top), HEX2(stack->bottom), stack->count);
-	node = stack->top;
-	while (node)
-	{
-		printf("	%04X [P:%04X N:%04X data: %d]\n", HEX2(node), HEX2(node->prev), HEX2(node->next), node->data);
-		node = node->next;
-	 }
 }

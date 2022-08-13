@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiyseo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/13 18:59:05 by jiyseo            #+#    #+#             */
+/*   Updated: 2022/08/13 18:59:15 by jiyseo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	error_exit(char *msg)
@@ -31,7 +43,7 @@ static int	get_num(const char	*str)
 	return (n);
 }
 
-void import_argv(t_stack *stack, int argc, char **argv)
+void	import_data(t_stack *stack, int argc, char **argv)
 {
 	int		i;
 	char	**arr;
