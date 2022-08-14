@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyseo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jiyseo <jiyseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 18:59:05 by jiyseo            #+#    #+#             */
-/*   Updated: 2022/08/13 18:59:15 by jiyseo           ###   ########.fr       */
+/*   Updated: 2022/08/14 16:04:12 by jiyseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	get_num(const char	*str)
 	n = 0;
 	sign = 1;
 	if (!*str)
-		error_exit("not an integer");
+		error_exit("Error");
 	if (*str == '-')
 		sign = -1;
 	if ((*str == '-') || (*str == '+'))
@@ -35,11 +35,11 @@ static int	get_num(const char	*str)
 	{
 		n = (n * 10) + (*str - '0') * sign;
 		if (n > INT_MAX || n < INT_MIN)
-			error_exit("not an integer");
+			error_exit("Error");
 		str++;
 	}
 	if (*str)
-		error_exit("not an integer");
+		error_exit("Error");
 	return (n);
 }
 
@@ -50,14 +50,14 @@ void	import_data(t_stack *stack, int argc, char **argv)
 	t_node	*node;
 
 	if (argc < 2)
-		error_exit("argc error");
+		exit(1);
 	while (*++argv)
 	{
 		arr = ft_split(*argv, ' ');
 		if (!arr)
 			error_exit("out of memory error");
 		if (!arr[0])
-			error_exit("not an integer");
+			error_exit("Error");
 		i = 0;
 		while (arr[i])
 		{

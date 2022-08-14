@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_index.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyseo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jiyseo <jiyseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:02:22 by jiyseo            #+#    #+#             */
-/*   Updated: 2022/08/13 19:02:24 by jiyseo           ###   ########.fr       */
+/*   Updated: 2022/08/14 16:00:10 by jiyseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	update_stack_index(t_stack *stack, t_node *new_node)
 	while (node)
 	{
 		if (node->data == new_node->data)
-			error_exit("overlap error");
+			error_exit("Error");
 		else if (node->data > new_node->data)
 			node->index++;
 		else if (node->data < new_node->data)
